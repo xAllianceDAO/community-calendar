@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Event Approvals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Admin - Event Approvals</h1>
+    <table id="pending-events-table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Submitted By</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Type</th>
+                <th>Link</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Pending events will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPendingEvents();
+        });
+
+        function loadPendingEvents() {
+            fetch('/pending-events')
+                .then(response => response.json())
+                .then(events => {
+                    const tableBody = document.querySelector('#pending-events-table tbody');
+                    tableBody.innerHTML = '';
+
+                    events.forEach(event => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${event.eventName}</td>
+                            <td>${event.name}</td>
+                            <td>${event.date}</td>
+                            <td>${event.startTime}</td>
+                            <td>${event.endTime}</td>
+                            <td>${event.type}</td>
+                            <td><a href="${event.link}" target="_blank">${event.link}</a></td>
+                            <td>${event.description}</td>
+                            <td>
+                                <button onclick="approveEvent(${event.id})">Approve</button>
+                                <button onclick="rejectEvent(${event.id})">Reject</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                });
+        }
+
+        function approveEvent(eventId) {
+            fetch('/approve-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: eventId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Event approved');
+                    loadPendingEvents();
+                } else {
+                    alert('Error approving event');
+                }
+            });
+        }
+
+        function rejectEvent(eventId) {
+            fetch('/reject-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: eventId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Event rejected');
+                    loadPendingEvents();
+                } else {
+                    alert('Error rejecting event');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

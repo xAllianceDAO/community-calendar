@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Test",
+    "eventName": "Test 1",
+    "type": "In Person",
+    "link": "https://www.facebook.com/www.spotlightononafricanmfictcenter",
+    "description": "Test",
+    "id": 1719397763313,
+    "status": "approved",
+    "start": "2024-06-27T12:00",
+    "end": "2024-06-27T16:00"
+  },
+  {
+    "name": "Lukas Seel",
+    "eventName": "Helios Space w/Beniamin",
+    "date": "2024-06-26",
+    "startTime": "20:00",
+    "endTime": "21:00",
+    "type": "X Space",
+    "link": "https://x.com/HeliosStaking/status/1805858951214363070",
+    "description": "Time to discuss the next phases of growth for @MultiversX, including the launch of @xAllianceDAO\n",
+    "id": 1719399102409,
+    "status": "pending"
+  }
+]

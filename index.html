@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Calendar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+</head>
+<body>
+    <h1>Community Calendar</h1>
+    <div class="calendar-container">
+        <div id="calendar"></div>
+        <button id="add-event-button">Add Event</button>
+    </div>
+    
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="event-form">
+                <h2>Add Event</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="event-name">Event Name:</label>
+                <input type="text" id="event-name" name="event-name" required>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                <label for="start-time">Start Time:</label>
+                <input type="time" id="start-time" name="start-time" required>
+                <label for="end-time">End Time:</label>
+                <input type="time" id="end-time" name="end-time" required>
+                <label for="type">Event Type:</label>
+                <select id="type" name="type" required>
+                    <option value="In Person">In Person</option>
+                    <option value="X Space">X Space</option>
+                    <option value="Webinar">Webinar</option>
+                </select>
+                <label for="link">Event Link:</label>
+                <input type="url" id="link" name="link" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description"></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="event-details-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="event-details"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
