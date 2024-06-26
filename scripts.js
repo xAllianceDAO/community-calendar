@@ -3,23 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         events: '/events',
-        eventTimeFormat: { // Display time with event title
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: false
-        },
         eventContent: function(arg) { // Custom content for events
-            const timeText = arg.timeText;
             const title = arg.event.title || arg.event.extendedProps.eventName;
-            const duration = ` (${arg.event.start.toTimeString().slice(0, 5)} - ${arg.event.end ? arg.event.end.toTimeString().slice(0, 5) : ''})`;
-            return { html: `<div>${title}${duration}</div>` };
+            const truncatedTitle = title.length > 20 ? title.substring(0, 20) + '...' : title;
+            return { html: `<div>${truncatedTitle}</div>` };
         },
         eventClick: function(info) {
             const eventTitle = info.event.title || info.event.extendedProps.eventName;
             const eventDetails = `
                 <h2><strong>${eventTitle}</strong></h2>
                 <p><strong>Date:</strong> ${info.event.start.toDateString()}</p>
-                <p><strong>Time:</strong> ${info.event.start.toTimeString().slice(0, 5)} - ${info.event.end ? info.event.end.toTimeString().slice(0, 5) : ''}</p>
+                <p><strong>Time:</strong> ${info.event.start.toLocaleTimeString()} - ${info.event.end ? info.event.end.toLocaleTimeString() : ''}</p>
                 <p><strong>Link:</strong> <a href="${info.event.extendedProps.link}" target="_blank">${info.event.extendedProps.link}</a></p>
                 <p><strong>Description:</strong> ${info.event.extendedProps.description}</p>
             `;
@@ -31,6 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('add-event-button').addEventListener('click', () => {
         document.getElementById('event-modal').style.display = 'block';
+    });
+
+    document.getElementById('admin-sign-in-button').addEventListener('click', () => {
+        window.location.href = './admin-signin.html';
     });
 
     document.querySelectorAll('.close').forEach(closeBtn => {
