@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         eventContent: function(arg) {
             const title = arg.event.title || arg.event.extendedProps.eventName;
-            const truncatedTitle = title.length > 20 ? title.substring(0, 20) + '...' : title;
+            const truncatedTitle = title.length > 15 ? title.substring(0, 15) + '...' : title;
             return { html: `<div>${truncatedTitle}</div>` };
         },
         eventClick: function(info) {
@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2><strong>${eventTitle}</strong></h2>
                 <p><strong>Date:</strong> ${new Date(info.event.start).toDateString()}</p>
                 <p><strong>Time:</strong> ${new Date(info.event.start).toLocaleTimeString()} - ${new Date(info.event.end).toLocaleTimeString()}</p>
+                <p><strong>Type:</strong> ${info.event.extendedProps.type}</p>
                 <p><strong>Link:</strong> <a href="${info.event.extendedProps.link}" target="_blank">${info.event.extendedProps.link}</a></p>
                 <p><strong>Description:</strong> ${info.event.extendedProps.description}</p>
             `;
