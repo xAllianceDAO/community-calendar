@@ -127,6 +127,19 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
+/* Prevent event titles from distorting calendar cells */
+.fc-daygrid-event {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fc-daygrid-event-dot {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Admin table styling */
 table {
     width: 90%;

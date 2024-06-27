@@ -2,6 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        dayMaxEventRows: 3, // Limit to 3 events per day
+        views: {
+            dayGridMonth: {
+                dayMaxEventRows: 3, // Limits the number of events displayed per day
+            }
+        },
+        eventLimit: true,
+        moreLinkClick: 'popover', // Show events in a popover when "+ more" is clicked
         events: (fetchInfo, successCallback, failureCallback) => {
             fetch('/events')
                 .then(response => response.json())
@@ -23,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         eventContent: function(arg) {
             const title = arg.event.title || arg.event.extendedProps.eventName;
-            const truncatedTitle = title.length > 15 ? title.substring(0, 15) + '...' : title;
+            const truncatedTitle = title.length > 12 ? title.substring(0, 12) + '...' : title;
             return { html: `<div>${truncatedTitle}</div>` };
         },
         eventClick: function(info) {
@@ -99,7 +107,7 @@ function handleFormSubmit(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert('Thank you for submitting your event.');
+            alert('Thank you for submitting your event, an admin will approve it soon.');
             document.getElementById('event-form').reset();
             document.getElementById('event-modal').style.display = 'none';
             window.location.reload();

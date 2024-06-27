@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 tableBody.appendChild(row);
             });
         });
+
+    document.getElementById('back-to-calendar-button').addEventListener('click', () => {
+        window.location.href = '/';
+    });
 });
 
 function approveEvent(eventId) {
