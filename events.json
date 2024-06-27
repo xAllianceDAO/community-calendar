@@ -1,62 +1,16 @@
 [
   {
     "name": "Test",
-    "eventName": "Test 1",
+    "eventName": "test 3",
+    "date": "2024-06-29",
+    "startTime": "12:00",
+    "endTime": "13:00",
     "type": "In Person",
     "link": "https://www.facebook.com/www.spotlightononafricanmfictcenter",
-    "description": "Test",
-    "id": 1719397763313,
-    "status": "approved",
-    "start": "2024-06-27T12:00",
-    "end": "2024-06-27T16:00"
-  },
-  {
-    "name": "Lukas Seel",
-    "eventName": "Helios Space w/Beniamin",
-    "type": "X Space",
-    "link": "https://x.com/HeliosStaking/status/1805858951214363070",
-    "description": "Time to discuss the next phases of growth for @MultiversX, including the launch of @xAllianceDAO\n",
-    "id": 1719399102409,
-    "status": "approved",
-    "start": "2024-06-26T20:00",
-    "end": "2024-06-26T21:00",
-    "title": "Helios Space w/Beniamin"
-  },
-  {
-    "name": "Test",
-    "eventName": "test 2",
-    "type": "In Person",
-    "link": "https://www.facebook.com/www.spotlightononafricanmfictcenter",
-    "description": "",
-    "id": 1719430971788,
-    "status": "approved",
-    "title": "test 2",
-    "start": "2024-06-28T15:00",
-    "end": "2024-06-28T16:00"
-  },
-  {
-    "name": "Test",
-    "eventName": "Time change",
-    "date": "2024-02-20",
-    "startTime": "12:03",
-    "endTime": "23:01",
-    "type": "In Person",
-    "link": "https://x.com/xAllianceDAO/status/1805667303587004744",
-    "description": "",
-    "id": 1719431428211,
-    "status": "rejected",
-    "title": "Time change"
-  },
-  {
-    "name": "Test",
-    "eventName": "hello",
-    "type": "X Space",
-    "link": "https://x.com/xAllianceDAO/status/1805667303587004744",
-    "description": "browvuBNWROVB[W'IVJB[i vfUNEWO[UBVN[OWR Vwubv[ouwnf'coen'OFVC uofbn[oeubnv[oeuqbvowe veuvnb[oweuBNV'OUEBWN'OVBEWF [Oewn[oubweo[gbofbO[NBV ONV[oebng[bjwgv[obwv[ojbr[ovub[owub[ob[fovub[OFUBEW[OBF[ B[oub[weobf[oWEUBO[JBW[e'ogjb",
-    "id": 1719431610994,
-    "status": "approved",
-    "title": "hello",
-    "start": "2024-06-29T08:00",
-    "end": "2024-06-29T09:00"
+    "description": "iyvh",
+    "startDateTime": "2024-06-29T11:00:00.000Z",
+    "endDateTime": "2024-06-29T12:00:00.000Z",
+    "id": 1719477319864,
+    "status": "approved"
   }
 ]

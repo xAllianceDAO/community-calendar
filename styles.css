@@ -1,41 +1,26 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f4f4f4;
 }
 
-h1, h2 {
-    color: #333;
-}
-
-.calendar-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 80%;
-    margin: 20px 0;
+h1 {
+    text-align: center;
+    margin-top: 20px;
 }
 
 #calendar {
-    flex-grow: 1;
+    max-width: 900px;
+    margin: 40px auto;
 }
 
-#add-event-button {
-    margin-left: 20px;
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
+#add-event-button, #admin-sign-in-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
     cursor: pointer;
-    align-self: flex-start;
-}
-
-#add-event-button:hover {
-    background-color: #0056b3;
 }
 
 .modal {
@@ -47,7 +32,8 @@ h1, h2 {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
@@ -57,8 +43,6 @@ h1, h2 {
     border: 1px solid #888;
     width: 80%;
     max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    position: relative;
 }
 
 .close {
@@ -74,6 +58,7 @@ h1, h2 {
     text-decoration: none;
     cursor: pointer;
 }
+
 
 #event-form label {
     display: block;

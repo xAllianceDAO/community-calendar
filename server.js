@@ -7,14 +7,14 @@ const session = require('express-session');
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Session configuration
 app.use(session({
-    secret: 'your_secret_key',
+    secret: process.env.SESSION_SECRET || 'your_secret_key',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false } // Set secure: true in production with HTTPS
@@ -78,6 +78,7 @@ app.post('/submit-event', (req, res) => {
     const newEvent = req.body;
     newEvent.id = Date.now();
     newEvent.status = 'pending';
+    // Store the start and end date-times as strings
     events.push(newEvent);
     fs.writeFile(eventsFilePath, JSON.stringify(events, null, 2), (err) => {
         if (err) {
