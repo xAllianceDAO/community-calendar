@@ -8,14 +8,20 @@
 </head>
 <body>
     <h1>Admin Sign In</h1>
-    <form id="admin-signin-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Sign In</button>
-    </form>
-    <button id="back-button">Back to Calendar</button>
+    <div class="form-container">
+        <form id="admin-signin-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="blue-button">Sign In</button>
+        </form>
+        <button id="back-button" class="blue-button">Back to Calendar</button>
+    </div>
     <div id="message"></div>
 
     <script>
@@ -25,7 +31,7 @@
                 username: document.getElementById('username').value,
                 password: document.getElementById('password').value,
             };
-            fetch('/signin', { // Update the fetch URL to the new endpoint
+            fetch('/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -44,7 +50,7 @@
                     messageDiv.textContent = 'Welcome!';
                     messageDiv.style.color = 'green';
                     setTimeout(() => {
-                        window.location.href = '/admin';
+                        window.location.href = './admin';
                     }, 2000); // Redirect after 2 seconds
                 } else {
                     messageDiv.textContent = 'Invalid credentials';

@@ -79,8 +79,8 @@ function handleFormSubmit(event) {
     };
 
     // Combine date and time into ISO strings
-    const startDateTime = new Date(`${formData.date}T${formData.startTime}:00`).toISOString();
-    const endDateTime = new Date(`${formData.date}T${formData.endTime}:00`).toISOString();
+    const startDateTime = new Date(`${formData.date}T${formData.startTime}`).toISOString();
+    const endDateTime = new Date(`${formData.date}T${formData.endTime}`).toISOString();
 
     const eventData = {
         ...formData,
