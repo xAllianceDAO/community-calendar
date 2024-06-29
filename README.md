@@ -13,15 +13,15 @@ If an admin would like to login they can press the Admin button on the main page
 At all stages there is a "back to calender" button to allow people to go back to the main page.
 
 What the Files do:
--index.html (Main page with the calender, modals, adding a new event button, and admin login button)
--scripts.js (Where the majority of scripts written in Javascript are kept. These make the calender interactive, determine how the data is formed, and how an event is submitted)
--server.js (Where all the API endpoints are created, in Node and Express js)
--styles.css (All of the design)
--events.json (Where all the data of events in the calender is stored in a json format)
--admin.js (Scripts for the Admin Page)
--admin.html (Admin page)
--admin-signin.html (Admin Signin portal, with script for sign in functionality)
--.env (Where the Admin Password is stored)
+- index.html (Main page with the calender, modals, adding a new event button, and admin login button)
+- scripts.js (Where the majority of scripts written in Javascript are kept. These make the calender interactive, determine how the data is formed, and how an event is submitted)
+- server.js (Where all the API endpoints are created, in Node and Express js)
+- styles.css (All of the design)
+- events.json (Where all the data of events in the calender is stored in a json format)
+- admin.js (Scripts for the Admin Page)
+- admin.html (Admin page)
+-  admin-signin.html (Admin Signin portal, with script for sign in functionality)
+- .env (Where the Admin Password is stored)
 
 Improvements needed:
 1) The calender should use a dynamic timezone system, where it translates event times into your local timezone, and can specify when adding an event what timezone you are in.
