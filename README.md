@@ -29,7 +29,6 @@ Improvements needed:
 3) A better design for the pages
 4) The Calender should be able to be integrated into your Google Calender where wanted (Allowing for reminders of events to people)
 5) Or the calender could connect to an email, X account, etc to be able to send reminders for events independently
-6) 
 
  Potential Vision in the Future:
  - The calender could even allow people to sign in using their Google account, select the type of events they want to be kept up to date with, and Profile they want to follow (that regularly posts events).
