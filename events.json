@@ -166,5 +166,19 @@
     "endDateTime": "2024-06-29T12:00:00.000Z",
     "id": 1719498947974,
     "status": "rejected"
+  },
+  {
+    "name": "Test",
+    "eventName": "test 3",
+    "date": "2024-07-09",
+    "startTime": "21:00",
+    "endTime": "22:00",
+    "type": "In Person",
+    "link": "",
+    "description": "sldmvc ",
+    "startDateTime": "2024-07-09T20:00:00.000Z",
+    "endDateTime": "2024-07-09T21:00:00.000Z",
+    "id": 1720464886283,
+    "status": "approved"
   }
 ]
