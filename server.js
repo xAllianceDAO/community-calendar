@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 const session = require('express-session');
+const supa = require('@supabase/supabase-js');
+const axios = require('axios');
 dotenv.config();
 
 const app = express();
@@ -20,18 +22,81 @@ app.use(session({
     cookie: { secure: false } // Set secure: true in production with HTTPS
 }));
 
+// Supabase Client
+const supabase = supa.createClient(process.env.SUPABASE_DOMAIN, process.env.SUPABASE_KEY)
+
 // Path to events.json
 const eventsFilePath = path.join(__dirname, 'events.json');
 
-// Load events from JSON file or initialize as an empty array
-let events;
-try {
-    events = require(eventsFilePath);
-    if (!Array.isArray(events)) {
-        events = [];
+let events = [];
+
+// Fetch events from Supabase and store them in the global variable
+async function fetchEvents() {
+    try {
+        const { data, error } = await supabase
+            .from('events')
+            .select('*');
+
+        if (error) {
+            console.error('Error fetching events:', error);
+        } else {
+            events = data;
+            
+        }
+    } catch (err) {
+        console.error('Unexpected error fetching events:', err);
     }
-} catch (error) {
-    events = [];
+}
+
+async function addEvent(event, provider) {
+    let startDate = new Date(event.datetime_utc);
+    let endDate = new Date(startDate); 
+
+    endDate.setDate(startDate.getDate() + 1);
+
+    const { error } = await supabase
+        .from('events')
+        .insert({
+            eventName: event.title,
+            description: event.description,
+            link: event.link,
+            type: event.category,
+            status: 'approved',
+            startDateTime: startDate.toISOString(), 
+            endDateTime: endDate.toISOString(),     
+            provider: provider,
+        });
+
+    if (error) {
+        console.error('Error inserting event:', error);
+    }
+}
+
+async function removeNFTSCEvents() {
+    const { error } = await supabase
+    .from('events')
+    .delete()
+    .eq('provider', 'NFTSC')
+    console.log(`Deleted old NFT Social Club Events`)
+};
+
+async function queryNFTSC() {
+    const nftSCApiUrl = process.env.NFTSC_DOMAIN;
+
+    await removeNFTSCEvents();
+
+    try {
+        const response = await axios.get(nftSCApiUrl);
+        const eventData = response.data;
+        for (const event of eventData.data) {
+            await addEvent(event, 'NFTSC');
+            console.log(`Adding ${event.title}`)
+        }
+
+        
+    } catch (error) {
+        console.error('Error fetching events from NFTSC:', error);
+    }
 }
 
 // Serve static files
@@ -63,8 +128,8 @@ app.get('/admin', isAuthenticated, (req, res) => {
 
 // Serve approved events for the calendar
 app.get('/events', (req, res) => {
-    const approvedEvents = events.filter(event => event.status === 'approved');
-    res.json(approvedEvents);
+    fetchEvents();
+    res.json(events);
 });
 
 // Serve pending events for admin approval
@@ -145,3 +210,7 @@ app.post('/reject-event', isAuthenticated, (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
+queryNFTSC();
+setInterval(queryNFTSC, 6 * 3600 * 1000);
